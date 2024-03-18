@@ -6,21 +6,29 @@ import { encryptFile } from "./fileEncryption.js";
 const app = document.getElementById("app");
 const form = document.createElement("FORM");
 const label = document.createElement("LABEL");
-const fileUpload = document.createElement("INPUT");
+// const fileUpload = document.createElement("INPUT");
+const inputText = document.createElement('INPUT');
 const encryptButton = document.createElement("INPUT");
 const lineBreak = document.createElement("BR");
 
 label.innerHTML = "Select file to upload:";
 
-fileUpload.setAttribute("type", "file");
-fileUpload.setAttribute("required", "true");
+// fileUpload.setAttribute("type", "file");
+// fileUpload.setAttribute("required", "true");
+
+inputText.setAttribute('type', 'text');
+inputText.setAttribute('maxLength', '100');
+inputText.setAttribute('placeholder', 'Type message here');
+inputText.setAttribute('required', 'true');
+inputText.setAttribute('size', '30');
 
 encryptButton.setAttribute("type", "submit");
 encryptButton.setAttribute("value", "ENCRYPT");
 
 form.appendChild(label);
 form.appendChild(lineBreak);
-form.appendChild(fileUpload);
+// form.appendChild(fileUpload);
+form.appendChild(inputText);
 form.appendChild(lineBreak.cloneNode(true));
 form.appendChild(encryptButton);
 
