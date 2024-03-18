@@ -48,7 +48,7 @@ However, only one instance of the `<br>` element could only be rendered to HTML:
 
 <br><br>
 
-The [`cloneNode()`](https://www.w3schools.com/jsrEF/met_node_clonenode.asp),
+The [`cloneNode()`](https://www.w3schools.com/jsrEF/met_node_clonenode.asp) method,
 used to create copies of elements, resolved this issue:
 
 ```javascript
