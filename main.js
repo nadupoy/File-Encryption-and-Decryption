@@ -1,24 +1,38 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+"use strict";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+import "./style.css";
+import { encryptFile } from "./fileEncryption.js";
 
-setupCounter(document.querySelector('#counter'))
+const app = document.getElementById("app");
+const form = document.createElement("FORM");
+const label = document.createElement("LABEL");
+const fileUpload = document.createElement("INPUT");
+const encryptButton = document.createElement("INPUT");
+const lineBreak = document.createElement("BR");
+
+label.innerHTML = "Select file to upload:";
+
+fileUpload.setAttribute("type", "file");
+fileUpload.setAttribute("required", "true");
+
+encryptButton.setAttribute("type", "submit");
+encryptButton.setAttribute("value", "ENCRYPT");
+
+form.appendChild(label);
+form.appendChild(lineBreak);
+form.appendChild(fileUpload);
+form.appendChild(lineBreak.cloneNode(true));
+form.appendChild(encryptButton);
+
+app.appendChild(form);
+
+const footer = document.getElementById("footer");
+const attribution = document.createElement("P");
+const anchor =
+  '<a href="https://github.com/nadupoy" target="_blank">Nadupoy</a>';
+
+attribution.innerHTML = `Built by ${anchor}.`;
+
+footer.appendChild(attribution);
+
+form.addEventListener("submit", encryptFile);
