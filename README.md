@@ -15,7 +15,7 @@
 
 - This is my first time using _[Vite](https://vitejs.dev/)_ on a vanilla <br>
   JavaScript project. <br>
-  Setting things up has been simple and quick and I'm liking it thus far.
+  Setting things up has been simple and quick and I'm liking it thus far. 👍🏽👍🏽
 
 ## Things I Learnt:
 
