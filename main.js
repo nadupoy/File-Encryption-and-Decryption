@@ -34,13 +34,15 @@ form.appendChild(encryptButton);
 
 app.appendChild(form);
 
-const footer = document.getElementById("footer");
+const footer = document.createElement("FOOTER");
 const attribution = document.createElement("P");
 const anchor =
   '<a href="https://github.com/nadupoy" target="_blank">Nadupoy</a>';
 
 attribution.innerHTML = `Built by ${anchor}.`;
 
+const body = document.getElementsByTagName('body')[0];
+body.appendChild(footer);
 footer.appendChild(attribution);
 
 form.addEventListener("submit", encryptFile);
