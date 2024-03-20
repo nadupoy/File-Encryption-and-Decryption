@@ -17,18 +17,18 @@ appName.innerHTML = "ENCRYPTOR/DECRYPTOR:";
 label.innerHTML = "Type message here:";
 
 inputText.setAttribute("type", "text");
-inputText.setAttribute("maxLength", "100");
+inputText.setAttribute("maxLength", "50");
 inputText.setAttribute("required", "true");
-inputText.setAttribute("size", "30");
+// inputText.setAttribute("size", "30");
 inputText.setAttribute("placeholder", "Use letters only, no spaces");
 
-encryptButton.setAttribute("type", "submit");
+encryptButton.setAttribute("type", "button");
 encryptButton.setAttribute("value", "ENCRYPT");
 
-decryptButton.setAttribute("type", "submit");
+decryptButton.setAttribute("type", "button");
 decryptButton.setAttribute("value", "DECRYPT");
 
-resetButton.setAttribute("type", "reset");
+resetButton.setAttribute("type", "button");
 resetButton.setAttribute("value", "RESET");
 
 form.appendChild(label);
@@ -52,10 +52,12 @@ attribution.innerHTML = `Built by ${anchor}.`;
 
 footer.appendChild(attribution);
 
-form.addEventListener("submit", encrypt);
-form.addEventListener("reset", resetForm);
+encryptButton.addEventListener("click", encrypt);
+resetButton.addEventListener("click", resetForm);
 
-function encrypt(event) {
+const cipher = document.createElement("P");
+
+function encrypt() {
   let message = inputText.value;
   message = String(message).toUpperCase();
   let result = "";
@@ -98,13 +100,11 @@ function encrypt(event) {
     }
   }
 
-  const cipher = document.createElement("P");
   cipher.innerHTML = `${result}`;
-  app.appendChild(cipher);
-
-  event.preventDefault();
+  form.insertBefore(cipher, form.children[4]);
 }
 
 function resetForm() {
-  app.removeChild(cipher);
+  form.reset();
+  cipher.remove();
 }
