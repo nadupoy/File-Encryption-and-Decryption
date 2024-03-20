@@ -9,6 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.1.6"
-  }
+    "vite": "^5.1.6",
+    "webpack-cli": "^5.1.4"
+  },
+  "description": "## Introduction:",
+  "main": "main.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
