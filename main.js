@@ -8,12 +8,13 @@ const form = document.createElement("FORM");
 const label = document.createElement("LABEL");
 const inputText = document.createElement("INPUT");
 const encryptButton = document.createElement("INPUT");
+const decryptButton = document.createElement('INPUT');
 const resetButton = document.createElement("INPUT");
 const lineBreak = document.createElement("BR");
 
 const header = document.getElementById('header');
 
-appName.innerHTML = 'ENCRYPTOR';
+appName.innerHTML = 'ENCRYPTOR/DECRYPTOR:';
 
 header.appendChild(appName);
 
@@ -28,6 +29,9 @@ inputText.setAttribute("placeholder", "Use letters only, no spaces");
 encryptButton.setAttribute("type", "submit");
 encryptButton.setAttribute("value", "ENCRYPT");
 
+decryptButton.setAttribute('type', 'submit');
+decryptButton.setAttribute('value', 'DECRYPT');
+
 resetButton.setAttribute("type", "reset");
 resetButton.setAttribute("value", "RESET");
 
@@ -36,6 +40,7 @@ form.appendChild(lineBreak);
 form.appendChild(inputText);
 form.appendChild(lineBreak.cloneNode(true));
 form.appendChild(encryptButton);
+form.appendChild(decryptButton);
 form.appendChild(lineBreak.cloneNode(true));
 form.appendChild(resetButton);
 
