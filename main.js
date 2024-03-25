@@ -20,7 +20,7 @@ inputText.setAttribute("type", "text");
 inputText.setAttribute("maxLength", "50");
 inputText.setAttribute("required", "true");
 // inputText.setAttribute("size", "30");
-inputText.setAttribute("placeholder", "Use letters only, no spaces");
+// inputText.setAttribute("placeholder", "Use letters only, no spaces");
 
 encryptButton.setAttribute("type", "button");
 encryptButton.setAttribute("value", "ENCRYPT");
@@ -53,15 +53,24 @@ attribution.innerHTML = `Built by ${anchor}.`;
 footer.appendChild(attribution);
 
 encryptButton.addEventListener("click", encrypt);
-decryptButton.addEventListener("click", decrypt);
+// decryptButton.addEventListener("click", decrypt);
 resetButton.addEventListener("click", resetForm);
 
-const cipher = document.createElement("P");
+const output = document.createElement("DIV");
+const para = document.createElement("P");
+// let result = "";
+const result = document.createElement("SPAN");
+
+para.innerHTML = `Output: `;
+
+para.insertBefore(result, para.childNodes[para.length - 1]);
+output.appendChild(para);
+app.appendChild(output);
 
 function encrypt() {
   let message = inputText.value;
   message = String(message).toUpperCase();
-  let result = "";
+  let cipher = [];
 
   const charSet = {
     A: "80",
@@ -96,63 +105,63 @@ function encrypt() {
     for (let key in charSet) {
       if (char == key) {
         char = charSet[key];
-        result += char;
+        cipher.push(char);
       }
     }
   }
 
-  cipher.innerHTML = `${result}`;
-  form.insertBefore(cipher, form.children[4]);
+  cipher.join();
+  result.innerHTML = cipher;
 }
 
-function decrypt() {
-  let message = inputText.value;
-  message = +message;
-  let result = "";
+// function decrypt() {
+//   let message = inputText.value;
+//   message = +message;
+//   let result = "";
 
-  const charSet = {
-    80: "A",
-    96: "B",
-    22: "C",
-    32: "D",
-    69: "E",
-    92: "F",
-    63: "G",
-    31: "H",
-    6: "I",
-    24: "J",
-    4: "K",
-    17: "L",
-    29: "M",
-    5: "N",
-    56: "O",
-    16: "P",
-    68: "Q",
-    59: "R",
-    72: "S",
-    76: "T",
-    60: "U",
-    74: "V",
-    57: "W",
-    75: "X",
-    13: "Y",
-    64: "Z",
-  };
+//   const charSet = {
+//     80: "A",
+//     96: "B",
+//     22: "C",
+//     32: "D",
+//     69: "E",
+//     92: "F",
+//     63: "G",
+//     31: "H",
+//     6: "I",
+//     24: "J",
+//     4: "K",
+//     17: "L",
+//     29: "M",
+//     5: "N",
+//     56: "O",
+//     16: "P",
+//     68: "Q",
+//     59: "R",
+//     72: "S",
+//     76: "T",
+//     60: "U",
+//     74: "V",
+//     57: "W",
+//     75: "X",
+//     13: "Y",
+//     64: "Z",
+//   };
 
-  for (let char of message) {
-    for (let key in charSet) {
-      if (char == key) {
-        char = charSet[key];
-        result += char;
-      }
-    }
-  }
+//   for (let char of message) {
+//     for (let key in charSet) {
+//       if (char == key) {
+//         char = charSet[key];
+//         result += char;
+//       }
+//     }
+//   }
 
-  cipher.innerHTML = `${result}`;
-  form.insertBefore(cipher, form.children[4]);
-}
+//   cipher.innerHTML = `${result}`;
+//   form.insertBefore(cipher, form.children[4]);
+// }
 
 function resetForm() {
   form.reset();
-  cipher.remove();
+  result.remove();
 }
