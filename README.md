@@ -15,6 +15,8 @@
 - This is my first time using _[Vite](https://vitejs.dev/)_ on a vanilla JavaScript
   project. Setting things up has been simple and quick and I'm liking it thus far. 👍🏽👍🏽
 
+<br>
+
 ## Things I Learnt:
 
 ### Duplicating Elements:
@@ -32,8 +34,6 @@ form.appendChild(lineBreak);
 form.appendChild(encryptButton);
 ```
 
-<br>
-
 However, only one instance of the `<br>` element could only be rendered to HTML:
 
 ```HTML
@@ -44,8 +44,6 @@ However, only one instance of the `<br>` element could only be rendered to HTML:
         <input type="submit" value="ENCRYPT">
     </form>
 ```
-
-<br><br>
 
 The [`cloneNode()`](https://www.w3schools.com/jsrEF/met_node_clonenode.asp)
 method, used to create copies of elements, resolved this issue:
@@ -58,8 +56,6 @@ form.appendChild(lineBreak.cloneNode(true));
 form.appendChild(encryptButton);
 ```
 
-<br>
-
 ```HTML
     <form>
         <label>Select file to upload:</label>
@@ -69,6 +65,8 @@ form.appendChild(encryptButton);
         <input type="submit" value="ENCRYPT">
     </form>
 ```
+
+<br>
 
 ### File Input Type:
 
@@ -93,11 +91,11 @@ Consequently, for the time being, I opted to work with `<input type="text"`:
     inputText.setAttribute('size', '30');
 ```
 
-<br>
-
 ```HTML
     <input type="text" maxlength="100" placeholder="Type message here" required="true" size="30">
 ```
+
+<br>
 
 ### Using an NPM Package:
 
@@ -122,3 +120,69 @@ Since I am using vanilla JavaScript, I opted to write my own function for encryp
 and decryption and not use any node packages. After watching [this](https://www.youtube.com/watch?v=NuyzuNBFWxQ)
 overview of Cryptography by [Fireship](https://www.youtube.com/@Fireship),
 I decided to use **Symmetric Encryption**.
+
+<br>
+
+### Encryption/Decryption Function (Algorithm? 🤔):
+
+Below is a function I came up with for encrypting text into numbers:
+
+```javascript
+function encrypt() {
+  let message = inputText.value;
+  message = String(message).toUpperCase();
+  let result = "";
+
+  const charSet = {
+    A: "80",
+    B: "96",
+    C: "22",
+    D: "32",
+    E: "69",
+    F: "92",
+    G: "63",
+    H: "31",
+    I: "6",
+    J: "24",
+    K: "4",
+    L: "17",
+    M: "29",
+    N: "5",
+    O: "56",
+    P: "16",
+    Q: "68",
+    R: "59",
+    S: "72",
+    T: "76",
+    U: "60",
+    V: "74",
+    W: "57",
+    X: "75",
+    Y: "13",
+    Z: "64",
+  };
+
+  for (let char of message) {
+    for (let key in charSet) {
+      if (char == key) {
+        char = charSet[key];
+        result += char;
+      }
+    }
+  }
+
+  cipher.innerHTML = `${result}`;
+  form.insertBefore(cipher, form.children[4]);
+}
+```
+
+The function above produced straightforward results with one-word messages.
+
+However, when the same function is inverted to decrypt numbers into text, I encountered the below error in the
+browser console:
+
+```
+Uncaught TypeError: message is not iterable
+```
+
+The function is not effective for the purpose it is intended for. I'm going back to the drawing board to solve this issue.
